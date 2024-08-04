@@ -1,0 +1,15 @@
+ice 
+1 
+2000
+man 
+100
+234
+stone
+20
+300
+Aurum
+30
+
+Silicium
+20
+123

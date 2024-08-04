@@ -1,0 +1,18 @@
+5 10
+A B 1
+B A 1
+A L 1
+L A 1
+A M 1
+M A 1
+A V 1
+V A 1
+B L 1
+L B 1
+M L 1
+L M 1
+L V 1
+V L 1
+M V 1
+B M 1
+V B 1

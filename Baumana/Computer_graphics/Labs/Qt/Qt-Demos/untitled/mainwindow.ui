@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1600</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1600</width>
+    <height>1000</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>1200</width>
+     <height>900</height>
+    </size>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridMain">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetFixedSize</enum>
+      </property>
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridSideBar">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <property name="leftMargin">
+         <number>6</number>
+        </property>
+        <property name="topMargin">
+         <number>6</number>
+        </property>
+        <property name="rightMargin">
+         <number>6</number>
+        </property>
+        <property name="bottomMargin">
+         <number>6</number>
+        </property>
+        <item row="16" column="0" colspan="3">
+         <widget class="Line" name="line_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="3">
+         <widget class="Line" name="line_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0" colspan="3">
+         <widget class="QProgressBar" name="btn_progressBar">
+          <property name="value">
+           <number>24</number>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_y">
+          <property name="maximumSize">
+           <size>
+            <width>16</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Y:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3" rowspan="20">
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_x">
+          <property name="maximumSize">
+           <size>
+            <width>16</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Х:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0" colspan="2">
+         <widget class="QPushButton" name="btn_makeSmaller">
+          <property name="text">
+           <string>Уменьшить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" colspan="3">
+         <widget class="QPushButton" name="btn_addPoint">
+          <property name="text">
+           <string>Добавить точку</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" colspan="2">
+         <widget class="QPushButton" name="btn_makeGrid">
+          <property name="text">
+           <string>Задать сетку</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0" colspan="3" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+         <widget class="QLabel" name="lableStep">
+          <property name="text">
+           <string>Шаг</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="3" alignment="Qt::AlignHCenter|Qt::AlignTop">
+         <widget class="QLabel" name="label_gol">
+          <property name="text">
+           <string>ГОООЛ</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="3">
+         <widget class="Line" name="line_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="19" column="0" colspan="3">
+         <widget class="QListView" name="listView">
+          <property name="maximumSize">
+           <size>
+            <width>512</width>
+            <height>63</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="2">
+         <widget class="QPushButton" name="btn_addObject">
+          <property name="text">
+           <string>Добавить объект</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" colspan="2">
+         <widget class="QLineEdit" name="line_EditX"/>
+        </item>
+        <item row="2" column="0" colspan="3">
+         <widget class="Line" name="line_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="0" colspan="3">
+         <widget class="QPushButton" name="btn_solveTask">
+          <property name="text">
+           <string>Решить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+         <widget class="QLabel" name="label_coordinates">
+          <property name="text">
+           <string>Координаты</string>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="2">
+         <widget class="QPushButton" name="btn_goForward">
+          <property name="text">
+           <string>Вперед</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" colspan="2">
+         <widget class="QLineEdit" name="liine_eEditY"/>
+        </item>
+        <item row="10" column="0" colspan="2">
+         <widget class="QPushButton" name="btn_printAlgorithm">
+          <property name="text">
+           <string>Список Алгоритмов</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="0" colspan="3">
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="0" colspan="2">
+         <widget class="QPushButton" name="btn_goBack">
+          <property name="text">
+           <string>Назад</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="2">
+         <widget class="QPushButton" name="btn_printGraphics">
+          <property name="text">
+           <string>Вывести графики</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="2">
+         <widget class="QPushButton" name="btn_makeBigger">
+          <property name="text">
+           <string>Увеличить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="3" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+         <widget class="QLabel" name="lableActions">
+          <property name="text">
+           <string>Действия</string>
+          </property>
+         </widget>
+        </item>
+        <item row="18" column="0" colspan="3">
+         <widget class="QPushButton" name="btn_goToStart">
+          <property name="text">
+           <string>Вернуться в начало</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <widget class="QGraphicsView" name="graphicsView">
+        <property name="minimumSize">
+         <size>
+          <width>1200</width>
+          <height>800</height>
+         </size>
+        </property>
+        <property name="backgroundBrush">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>123</red>
+           <green>123</green>
+           <blue>123</blue>
+          </color>
+         </brush>
+        </property>
+        <property name="foregroundBrush">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>213</red>
+           <green>123</green>
+           <blue>123</blue>
+          </color>
+         </brush>
+        </property>
+        <property name="cacheMode">
+         <set>QGraphicsView::CacheNone</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+   <zorder></zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1600</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="action_Create"/>
+    <addaction name="action_Open"/>
+    <addaction name="action_SaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="action_ListLast"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="action_Exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Change">
+    <property name="title">
+     <string>Изменить</string>
+    </property>
+    <addaction name="action_Cancel"/>
+    <addaction name="action_Delete"/>
+    <addaction name="separator"/>
+    <addaction name="action_Cut"/>
+    <addaction name="action_Copy"/>
+    <addaction name="action_Insert"/>
+   </widget>
+   <widget class="QMenu" name="menu_About">
+    <property name="title">
+     <string>О программе</string>
+    </property>
+    <addaction name="action_Author"/>
+    <addaction name="action_TaskInfo"/>
+   </widget>
+   <widget class="QMenu" name="menu_Info">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Change"/>
+   <addaction name="menu_About"/>
+   <addaction name="menu_Info"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_Create">
+   <property name="text">
+    <string>Создать</string>
+   </property>
+  </action>
+  <action name="action_Open">
+   <property name="text">
+    <string>Открыть</string>
+   </property>
+  </action>
+  <action name="action_SaveAs">
+   <property name="text">
+    <string>Сохранить как...</string>
+   </property>
+  </action>
+  <action name="action_ListLast">
+   <property name="text">
+    <string>Последние</string>
+   </property>
+  </action>
+  <action name="action_Exit">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="action_Cancel">
+   <property name="text">
+    <string>Отменить</string>
+   </property>
+  </action>
+  <action name="action_Delete">
+   <property name="text">
+    <string>Удалить</string>
+   </property>
+  </action>
+  <action name="action_Cut">
+   <property name="text">
+    <string>Вырезать</string>
+   </property>
+  </action>
+  <action name="action_Copy">
+   <property name="text">
+    <string>Скопировать</string>
+   </property>
+  </action>
+  <action name="action_Insert">
+   <property name="text">
+    <string>Вставить</string>
+   </property>
+  </action>
+  <action name="action_Author">
+   <property name="text">
+    <string>Об авторе</string>
+   </property>
+  </action>
+  <action name="action_TaskInfo">
+   <property name="text">
+    <string>о задаче</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btn_addPoint</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>215</x>
+     <y>398</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>320</x>
+     <y>473</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_makeGrid</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>73</x>
+     <y>553</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>305</x>
+     <y>519</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_makeBigger</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>619</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>297</x>
+     <y>620</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_makeSmaller</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>619</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>635</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_solveTask</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>184</x>
+     <y>649</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>304</x>
+     <y>659</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_goForward</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>235</x>
+     <y>850</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>832</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_goBack</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>119</x>
+     <y>847</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>336</x>
+     <y>800</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_addPoint</sender>
+   <signal>pressed()</signal>
+   <receiver>liine_eEditY</receiver>
+   <slot>copy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>161</x>
+     <y>387</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>162</x>
+     <y>362</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_addPoint</sender>
+   <signal>pressed()</signal>
+   <receiver>line_EditX</receiver>
+   <slot>copy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>97</x>
+     <y>382</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>97</x>
+     <y>330</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_addPoint</sender>
+   <signal>released()</signal>
+   <receiver>liine_eEditY</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>184</x>
+     <y>395</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>184</x>
+     <y>363</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_addPoint</sender>
+   <signal>released()</signal>
+   <receiver>line_EditX</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>380</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>113</x>
+     <y>333</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_goToStart</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>269</x>
+     <y>887</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>304</x>
+     <y>888</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

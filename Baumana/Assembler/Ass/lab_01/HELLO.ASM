@@ -1,0 +1,14 @@
+.MODEL TINY
+.DOSSEG
+.DATA
+   MSG DB "HELLO,WORLD!",0Dh,0Ah,"$"
+.CODE
+.STARTUP
+   	MOV  AH, 09h
+   	MOV  DX, OFFSET MSG
+	INT  21h
+   	MOV  AH, 07h
+	INT  21h
+   	MOV  AH, 4Ch
+   	INT  21h
+END

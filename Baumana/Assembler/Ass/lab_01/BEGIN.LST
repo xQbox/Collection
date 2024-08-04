@@ -1,0 +1,57 @@
+Microsoft (R) Macro Assembler Version 6.11		    02/14/24 06:09:45
+begin.asm						     Page 1 - 1
+
+
+ 0000				StkSeg SEGMENT PARA STACK 'STACK'
+ 0000  0200 [			 DB 200h DUP (?)
+        00
+       ]
+ 0200				StkSeg ENDS
+				;
+ 0000				DataS SEGMENT WORD 'DATA'
+ 0000 0D			HelloMessage DB 13 		;курсор поместить в нач. строки
+ 0001  0A			 DB 10 				;перевести курсор на нов. строку
+ 0002  48 65 6C 6C 6F 2C	 DB 'Hello, world! 12' 		;текст сообщения
+       20 77 6F 72 6C 64
+       21 20 31 32
+ 0012  24			 DB '$' 				;ограничитель для функции DOS
+ 0013				DataS ENDS
+				;
+ 0000				Code SEGMENT WORD 'CODE'
+				 ASSUME CS:Code, DS:DataS
+ 0000				DispMsg:
+ 0000  B8 ---- R		 mov AX,DataS ;загрузка в AX адреса сегмента данных
+ 0003  8E D8			 mov DS,AX 				;установка DS
+ 0005  BA 0000 R		 mov DX,OFFSET HelloMessage 	;DS:DX - адрес строки
+ 0008  B4 09			 mov AH,9 				;АН=09h выдать на дисплей строку
+ 000A  CD 21			 int 21h 				;вызов функции DOS
+ 000C  B4 07			 mov AH,7 				;АН=07h ввести символ без эха
+ 000E  CD 21			 INT 21h 				;вызов функции DOS
+ 0010  B4 4C			 mov AH,4Ch 			;АН=4Ch завершить процесс
+ 0012  CD 21			 int 21h 				;вызов функции DOS
+ 0014				Code ENDS
+				 END DispMsg
+Microsoft (R) Macro Assembler Version 6.11		    02/14/24 06:09:45
+begin.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+Code . . . . . . . . . . . . . .	16 Bit	 0014	  Word	  Private 'CODE'	
+DataS  . . . . . . . . . . . . .	16 Bit	 0013	  Word	  Private 'DATA'	
+StkSeg . . . . . . . . . . . . .	16 Bit	 0200	  Para	  Stack	  'STACK'	 
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+DispMsg  . . . . . . . . . . . .	L Near	 0000	  Code	
+HelloMessage . . . . . . . . . .	Byte	 0000	  DataS	
+
+	   0 Warnings
+	   0 Errors

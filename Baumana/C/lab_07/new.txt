@@ -1,0 +1,12 @@
+1. make a module test :
+                    -> filter_funcion
+                    -> file_write
+                    -> create_array (too big mem allocate) ???? 
+2. make check_tests for all lab 
+3. upload to server
+4. make graphics of algorithms difference.
+5. DONT FORGET ABOUT ILYA MAKE (MKDIR OUT)
+valgrind memcheck
+find information about directories 
+(how to include text file in fopen 
+from other directory)

@@ -1,0 +1,87 @@
+
+int matrix_five_input(int **ptr, size_t row, size_t col, int *ptrv, size_t *index, int *ptrc, size_t *index_c)
+{
+	for (size_t i = 0; i < row; ++i)
+	{
+		for (size_t k = 0; k < col; ++k)
+		{
+			printf("[%ld][%ld]\n", i + 1, k + 1);
+			if (number_check(&ptr[i][k]))
+			{
+				return ERR_NUM_INPUT;
+			}
+			if (ptr[i][k] > 0)
+			{
+				ptrv[*index] = ptr[i][k];
+				(*index)++;
+				ptrc[*index_c] = k;
+				(*index_c)++;
+			}
+		}
+	}
+	return ERR_OK;
+}
+
+int matrix_ten_input(int **ptr, size_t row, size_t col, int *ptrv, size_t *index, int *ptrc, size_t *index_c)
+{
+	char flag;
+	while (flag != 'e')
+	{
+
+		size_t tmp_row, tmp_col;
+		printf("Input  matrix index for input \n");
+		if (((number_sec_check(&tmp_row, row)) != ERR_OK))
+		{
+			printf("Ошибка диапазона \n");
+			return ERR_NUMSEC_INPUT;
+		}
+		if ((number_sec_check(&tmp_col, col) != ERR_OK))	
+		{
+				printf("Ошибка диапазона \n");
+				return ERR_NUMSEC_INPUT;
+		}
+		if (number_check(&ptr[tmp_row][tmp_col]))
+		{
+			free(ptr);
+			return ERR_NUM_INPUT;	
+		}
+		ptrv[*index] = ptr[tmp_row][tmp_col];
+		(*index)++;
+		ptrc[*index_c] = tmp_col;
+		(*index_c)++;
+		printf("\nNumber successfully read\n");
+		printf("\nInput e for exit,\nother for continue\n");
+		fscanf(stdin, " %c", &flag);
+		// printf("\n%c\n", flag);
+		scanf("%*[^\n]");
+	}
+	return ERR_OK;
+}
+
+
+// printf(" summa -> %d\n BI -> %d\n AJ -> %d\n IA -> %d\n AN -> %d\n BN -> %d\n",
+// summa, vector_index[ptr_columns[i] - 1], ptr_columns[i], ptr_row_pointers[index], ptr_values[i], vector_values[vector_index[ptr_columns[i] - 1] - 1]);
+    // int *res = calloc((row), sizeof(int));
+    // if (!res)
+    //     return NULL;
+
+
+
+// while (n < 100)
+//             {
+//                 time_a = clock();
+//                 insertion_sort(arr, i, sizeof(struct data_t), comp_perfomance_type);
+//                 time_a_end = clock();
+//                 time_a_fin = (double) (time_a_end - time_a) / CLOCKS_PER_SEC;
+//                 time_all_a += time_a_fin;
+//                 time_key = clock();
+//                 insertion_sort(key_arr, k, sizeof(struct keys_t), comp_perfomance_type);
+//                 time_key_end = clock();
+//                 time_key_fin = (double) (time_key_end - time_key) / CLOCKS_PER_SEC;
+//                 time_all += time_a_fin;
+//                 n += 1;
+//             }
+//             time_all_a = time_all_a / (double) n;
+//             time_all = time_all / (double) n;
+//             break;       
+//    			}

@@ -1,0 +1,525 @@
+
+// инициализация имени из файла каждое слово на новой строке
+// int read_from_file(FILE *f, tree_t *leaf)
+// {
+//     char *buf = NULL;
+//     size_t len;
+//     ssize_t size;
+    
+//     if ((size = getline(&buf, &len, f)) == -1)
+//     {
+//         free(buf);
+//         return ERR_READ_LINE;
+//     }
+//     if (buf[strlen(buf) - 1] == '\n')
+//         buf[strlen(buf) - 1] = '\0';
+    
+//     char *tmp = malloc(sizeof(char) * strlen(buf) + 1); 
+//     if (!tmp)
+//     {
+//         free(buf);
+//         return ERR_MEM;
+//     }
+    
+//     strcpy(tmp, buf);
+//     free(leaf->word);
+//     leaf->word = tmp;
+//     free(buf);
+//     return ERR_OK;    
+// }
+
+
+
+    // {
+    //     printf("Тестовый случай для функций \n\t1) read_from_file\n\t2) write_in)file\n");
+    //     FILE *f;
+    //     f = fopen("new.txt", "r+");
+    //     tree_t tmp = {0, NULL, NULL, NULL}; 
+    //     read_from_file(f, &tmp);
+    //     printf("in main -> %s\n", tmp.word);
+    //     write_in_file(f, &tmp);
+    //     fclose(f);
+    //     free(tmp.word);  
+    //     printf("\n\n");  
+    // }
+    // {
+        
+    //     printf("Программа создает частотный словарь на основе заданного файла\n");
+        // tree_t *tree_head = NULL;
+        // read_file("text.txt", &tree_head);
+        // read_tree(tree_head);
+    
+        // char name[256];
+        // printf("Введите слово для поиска в файле\n>>");
+        // fscanf(stdin, "%256s", name);
+        // size_t tmp_size = strlen(name);
+        // char new_name[tmp_size];
+        // strcpy(new_name, name);
+        // dump(tree_head);
+        
+        // tree_t *find_result = NULL;
+        // find_result = find(tree_head, name);
+        // if (find_result)
+        //     printf("%s\n", find_result->word);
+        // else 
+        // {
+        //     printf("Введите место для вставки слова\n");
+        //     long new_size = 0;
+        //     int pos;
+        //     FILE *f = fopen("text.txt", "rb+");
+        //     char symbol;
+        //     int A[ARR_SIZE];
+        //     size_t index;
+        //     while ((symbol = getc(f)) != EOF)
+        //     {
+        //         if (symbol == ' ')
+        //         {
+        //             A[index] = ftell(f);
+        //             index++;
+        //         }
+        //         new_size ++;
+        //     }
+        //     fseek(f, 0, SEEK_SET);
+
+        //     printf("Размер файла в байтах %ld\n", new_size);
+        //     printf("Введите позицию для записи в файл\n");
+        //     if ((fscanf(stdin, "%d", &pos)) != 1)
+        //     {
+        //         printf("Ошибка ввода\n");
+        //         return ERR_NUM;
+        //     }
+        //     if ((pos > new_size) || (pos < 0))
+        //     {
+        //         printf("Ошибка позиции\n");
+        //         return ERR_NUM;
+        //     }
+        //     int flag  = 0;
+        //     int free_pos = binar_search(A, index, pos, &flag);
+        //     pos = A[free_pos];
+        //     printf("%d\n", pos);
+        //     char M[new_size - pos + 1];
+        //     fseek(f, pos, SEEK_SET);
+        //     fread(M, sizeof(char), new_size - pos, f);
+        //     M[new_size - pos] = '\0';
+        //     fseek(f, pos, SEEK_SET);
+        //     fwrite(new_name, sizeof(new_name) , 1, f);
+        //     char space = ' ';
+        //     fwrite(&space, sizeof(space), 1, f);
+        //     fwrite(M, sizeof(M) - 1, 1, f);
+        //     fclose(f);
+    //     }
+    //     printf("Дерево имеет вид\n");
+    //     clock_t a = clock();
+    //     if (!(find_in_file("text.txt", new_name)))
+    //     {
+    //         double time = (double) (clock() - a) / CLOCKS_PER_SEC;
+    //         printf("\nВремя поиска в файле-> %lf\n", time); 
+    //     }
+
+    //     tree_t leaf = {1, new_name, NULL, NULL};
+    //     tree_head = insert(tree_head, &leaf);
+    //     find_result = NULL;
+    //     clock_t time_start = clock();
+    //     find_result = find(tree_head, name);
+    //     double time_end = (double) (clock() - time_start) / CLOCKS_PER_SEC;
+    //     printf("\nВремя поиска в дереве-> %lf\n", time_end);
+    //     printf("\n\n");
+    // }
+
+
+
+// Реализация хеш-таблицы в Cи
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct set
+{
+  int key;
+  int data;
+};
+struct set *array;
+int capacity = 10;
+int size = 0;
+
+int hashFunction(int key)
+{
+  return (key % capacity);
+}
+int checkPrime(int n)
+{
+  int i;
+  if (n == 1 || n == 0)
+  {
+  return 0;
+  }
+  for (i = 2; i < n / 2; i++)
+  {
+  if (n % i == 0)
+  {
+    return 0;
+  }
+  }
+  return 1;
+}
+int getPrime(int n)
+{
+  if (n % 2 == 0)
+  {
+  n++;
+  }
+  while (!checkPrime(n))
+  {
+  n += 2;
+  }
+  return n;
+}
+void init_array()
+{
+  capacity = getPrime(capacity);
+  array = (struct set *)malloc(capacity * sizeof(struct set));
+  for (int i = 0; i < capacity; i++)
+  {
+  array[i].key = 0;
+  array[i].data = 0;
+  }
+}
+
+void insert(int key, int data)
+{
+  int index = hashFunction(key);
+  if (array[index].data == 0)
+  {
+  array[index].key = key;
+  array[index].data = data;
+  size++;
+  printf("\n Ключ (%d) вставлен \n", key);
+  }
+  else if (array[index].key == key)
+  {
+  array[index].data = data;
+  }
+  else
+  {
+  printf("\n Возникла коллизия \n");
+  }
+}
+
+void remove_element(int key)
+{
+  int index = hashFunction(key);
+  if (array[index].data == 0)
+  {
+  printf("\n Данного ключа не существует \n");
+  }
+  else
+  {
+  array[index].key = 0;
+  array[index].data = 0;
+  size--;
+  printf("\n Ключ (%d) удален \n", key);
+  }
+}
+void display()
+{
+  int i;
+  for (i = 0; i < capacity; i++)
+  {
+  if (array[i].data == 0)
+  {
+    printf("\n array[%d]: / ", i);
+  }
+  else
+  {
+    printf("\n Ключ: %d array[%d]: %d \t", array[i].key, i, array[i].data);
+  }
+  }
+}
+
+int size_of_hashtable()
+{
+  return size;
+}
+
+int main()
+{
+  int choice, key, data, n;
+  int c = 0;
+  init_array();
+
+  do
+  {
+  printf("1.Вставить элемент в хэш-таблицу"
+     "\n2.Удалить элемент из хэш-таблицы"
+     "\n3.Узнать размер хэш-таблицы"
+     "\n4.Вывести хэш-таблицу"
+     "\n\n Пожалуйста, выберите нужный вариант: ");
+
+  scanf("%d", &choice);
+  switch (choice)
+  {
+  case 1:
+
+    printf("Введите ключ -:\t");
+    scanf("%d", &key);
+    printf("Введите данные-:\t");
+    scanf("%d", &data);
+    insert(key, data);
+
+    break;
+
+  case 2:
+
+    printf("Введите ключ, который хотите удалить-:");
+    scanf("%d", &key);
+    remove_element(key);
+
+    break;
+
+  case 3:
+
+    n = size_of_hashtable();
+    printf("Размер хеш-таблицы-:%d\n", n);
+
+    break;
+
+  case 4:
+
+    display();
+
+    break;
+
+  default:
+
+    printf("Неверно введены данные\n");
+  }
+
+  printf("\nПродолжить? (Нажмите 1, если да): ");
+  scanf("%d", &c);
+
+  } while (c == 1);
+}
+
+
+
+
+    //     int size = 10;
+    //     char name[256];
+    //     hit_t *ptr = (hit_t *) calloc(size, sizeof(hit_t) );         
+    //     int new = 0;
+    //     int i=0;
+    //     while (i < 3)
+    //     {
+    //         fprintf(stdout, "Input value\n>>");
+    //         fscanf(stdin, "%s", name);
+    //         scanf("%*[^\n]");
+    //         fprintf(stdout, "Input key\n>>");
+    //         fscanf(stdin, "%d", &new);
+    //         scanf("%*[^\n]");
+    //         add_to_hashtable(ptr, new, name);
+    //         i++;
+    //     }
+    //     print_hashtable(ptr, size);
+    //     delete_from_hashtable(ptr, 1);
+    //     print_hashtable(ptr, size);
+    //     free_hashtable(ptr);
+
+
+    
+    
+    
+    //     size_t m = word_to_key("Алексей");
+    //     printf("%ld\n", m);
+    //     unsigned long size = hash_func(m);
+    //     printf("%lu\n", size);
+        
+    // }
+    // Test for hashtable create without collision(valgrind also)
+    // {
+    //     table_t *tmp = hashtable_init(400);
+    //     char name_1[8] = {'h','e','l','l','o','\0'};
+    //     char *key_1_pre = "kjasdf";
+    //     size_t key_1 = word_to_key(key_1_pre);
+    //     char *name_new = malloc(sizeof(name_1) + 1);
+    //     strcpy(name_new, name_1);
+    //     // printf("%s", name_new);
+    //     item_t *tmp_p = create_item(key_1, name_new);
+    //     hashtable_add(tmp, tmp_p);
+    //     char *new = "Aleksei";
+    //     char *key_2_pre = "asdf";
+
+    //     size_t key_2 = word_to_key(key_2_pre);
+        
+    //     char *name_new_new = malloc(strlen(new) + 1);
+    //     strcpy(name_new_new,new);
+    //     item_t *tmp_p_p = create_item(key_2, name_new_new);
+    //     hashtable_add(tmp, tmp_p_p);
+    //     hashtable_print(tmp);
+    //     hashtable_delete(tmp);
+    //     printf("%p\n",  (void*) tmp_p);
+    //     printf("%p\n", (void*) tmp);
+    // }
+    // {
+        // tablec_t *tmp = hashtablec_init(400);
+        // char name_1[8] = {'h','e','l','l','o','\0'};
+        // // char *key_1_pre = "kjasdf";
+        // // size_t key_1 = word_to_key(key_1_pre);
+        // char *name_new = malloc(sizeof(name_1) + 1);
+        // strcpy(name_new, name_1);
+        // printf("%s", name_new);
+        // itemtree_t *tmp_p = create_itemtree(5, name_new);
+        // hashtablec_add(tmp, tmp_p);
+        // char *new = "Aleksei";
+        // // char *key_2_pre = "asdf";
+
+        // // size_t key_2 = word_to_key(key_2_pre);
+        
+        // char *name_new_new = malloc(strlen(new) + 1);
+        // strcpy(name_new_new,new);
+        // itemtree_t *tmp_p_p = create_itemtree(6, name_new_new);
+        // hashtablec_add(tmp, tmp_p_p);
+        
+        //         char *new_m = "TOPTOP";
+        // char *name_new_new_new = malloc(strlen(new_m) + 1);
+        // strcpy(name_new_new_new,new_m);
+        // itemtree_t *tmp_p_p_p = create_itemtree(7, name_new_new_new);
+        // hashtablec_add(tmp, tmp_p_p_p);
+        // hashtablec_print(tmp);
+        // hashtablec_delete(tmp);
+    // }
+    // {
+    //     tablec_t *ptr = init_hashtable_from_file("./src/text.txt", 30);
+    //     hashtablec_print(ptr);
+    //     hashtablec_delete(ptr);
+    // }
+    
+
+// void print_line(tree_t *leaf, int all_size, int start)
+// {
+//     int mid = all_size / 2;
+//     for (int i = start; i < all_size; ++i)
+//     {
+//         printf("-");
+//         if (i == mid)
+//         {
+//             printf("%s %d", leaf->word, leaf->counter);
+//         }
+//     }
+// }                                                                                                                                     
+
+// void print_tree(tree_t *tree_head, int all_size, int start)
+// {
+//     if (!tree_head)
+//     {
+//         return;
+//     }
+//     else 
+//     {
+
+//     }
+// }
+
+
+
+//  int mid = all_size / 2;
+//         printf("|");
+//         int counter = 0;
+//         for (int i = start; i < all_size; ++i)
+//         {
+//             if (((i + ((int)strlen(tree_head->word) / 2)) + mid / 2) == mid)
+//             {
+//                 counter++;
+//             }
+//             if ((i + ((int)strlen(tree_head->word) / 2)) == mid)
+//             {
+//                 printf("%s %d", tree_head->word, tree_head->counter);
+//                 i += (strlen(tree_head->word) + 3);
+//                 counter = 1;
+//             }
+//             if (counter > 0)
+//             {
+//                 printf("-");
+//                 counter++;
+//                 if (counter > mid / 2)
+//                     counter = 0;
+//             }
+//             else 
+//             {
+//                 printf(" ");
+//             }
+//         }
+//         printf("|\n");
+//         n--;
+//         printf("|");
+//         for (int i = start; i < all_size; ++i)
+//         {
+//             if (((i + ((int)strlen(tree_head->word) / 2)) + mid / 2) == mid)
+//             {
+//                 printf("|");
+//             }
+//             else if (i == ((int) (mid + strlen(tree_head->word) / 2) + (mid / 2) - 1 ))
+//             {
+//                 printf("|");
+//             }
+//             else 
+//             {
+//                 printf(" ");
+//             }
+//         }
+//         printf("|\n");
+
+     rr = (char **)malloc(10 * sizeof(char *));
+    for (size_t i = 0; i < 10; ++i)
+    {
+        arr[i] = NULL;
+    }
+    node_t **tmp = (node_t **) malloc(10 * sizeof(node_t *));
+    FILE *f = fopen("text.txt", "r+");
+    for (size_t i = 0; i < 10; ++i)
+    {
+        tmp[i] = NULL;
+    }
+    for (size_t i = 0; i < 10; ++i)
+    {
+        char word[256];
+        fscanf(f, "%s", word);
+        char *tmp_ = malloc(strlen(word) + 1);
+        strcpy(tmp_, word);
+        arr[i] = tmp_;
+        node_t *tmp_node = node_create(i, arr[i]);
+        tmp[i] = tmp_node;
+    }
+    
+    node_t *head = NULL;
+    for (size_t i = 0; i < 10; ++i)
+    {
+        head = node_push(head, tmp[i]);
+    }
+    node_iter(head);
+    node_t *changer_1 = node_find_int(head, 9);
+    node_t *changer_2 = node_find_int(head, 8);
+    node_t *changer_3 = node_find_int(head, 6);
+    node_t *changer_4 = node_find_int(head, 5);
+    changer_1->next = changer_4;
+    changer_3->next = changer_2;
+    node_t *tmp_ok = changer_2->next;
+    changer_2->next = changer_4->next;
+    changer_4->next = tmp_ok;
+    
+    int sum = 0;
+    node_t *t = tmp[8];
+    tmp[8] = tmp[5]; 
+    tmp[5] = t;
+    for (size_t i = 0; i< 10; ++i)
+    {
+        if ((i % 2) == 0)
+        {
+            sum += tmp[i]->pos; 
+            printf("%d %ld\n", tmp[i]->pos, i);
+        }
+    }
+    node_iter(head);
+    printf("Sum -> %d", sum);
+    fclose(f);
+    // free(arr);
+   

@@ -1,0 +1,459 @@
+#include "libmy.h"
+
+node_t *node_create(int item)
+{
+    node_t *node = malloc(sizeof(node_t));
+    if (node)
+    {
+        node->item = item;
+        node->next = NULL;
+    }
+    return node;
+}
+
+
+void node_free(node_t *node)
+{
+    free(node->next);
+    free(node); 
+}
+
+node_t *node_push(node_t *node, node_t *head, node_t *tail)
+{
+    // проверка на пустой узел и проверка на пустой список в виде функции 
+    if (head->next == NULL && tail->next == NULL)
+    {
+        head->next = node;
+        tail->next = node->next;
+    }
+    else
+    {
+        tail = node;
+        tail->next = node->next;    
+    }   
+    return node; 
+}
+
+node_t *node_push_tail(node_t *head, node_t *node)
+{
+    node_t *cur = head;
+    while (cur->next) cur = cur->next;
+    
+    cur->next = node;
+    
+    return head;
+}
+
+node_t *node_push_head(node_t *head, node_t *node) 
+{
+    node->next = head;
+    
+    return node;
+}
+
+void list_free(node_t *head)
+{
+    node_t *tmp = NULL;
+    while (head)
+    {
+        tmp = head->next;
+        node_free(head);
+        head = tmp;
+    }
+}
+
+
+
+
+
+
+
+    if (head_first->item > head_second->item)
+    {
+        node_t *tmp = head_second->next;
+        head_second->next = NULL;
+        head_third = head_second;
+        head_second = tmp;
+    }
+    else 
+    {
+        node_t *tmp = head_first->next;
+        head_first->next = NULL;
+        head_third = head_first;
+        head_first = tmp;
+    }
+    // Догруппировка в один списка 
+    while (head_second && head_first)
+    {   
+        if (head_second->item < head_first->item)
+        {
+            node_t *tmp = head_second->next;
+            head_second->next = head_third;
+            head_third = head_second;
+            head_second = tmp;
+        }
+        else if (head_second->item >= head_first->item)
+        {
+            node_t *tmp = head_first->next;
+            head_first->next = head_third;
+            head_third = head_first;
+            head_first = tmp;
+        }
+    }
+
+    while (head_second)
+    {
+        node_t *tmp = head_second->next;
+        head_second->next = head_third;
+        head_third = head_second;
+        head_second = tmp;
+    }
+    while (head_first)
+    {
+        node_t *tmp = head_first->next;
+        head_first->next = head_third;
+        head_third = head_first;
+        head_first = tmp;
+    }
+    
+    node_t *tmp = head_third->next;
+    head_third->next = NULL;
+    head_first = head_third;
+    head_third = tmp;
+    // printf("fir -> %d\n th -> %d\n", head_first->item, head_third->item);
+    while (head_first->item > head_third->item)
+    {
+        node_t *tmp = head_third->next;
+        head_third->next = head_first;
+        head_first = head_third;
+        head_third = tmp;
+    }
+    // printf("Third list -> \n");
+    // print(head_third);
+    // printf("First list -> \n");
+    // print(head_first);
+    // инициализация второго списка
+    tmp = head_third->next;
+    head_third->next = NULL;
+    head_second = head_third;
+    head_third = tmp;
+    // printf("second -> %d\n th -> %d\n", head_second->item, head_third->item);
+    
+    /// Изменить порядок, вынести из-под if переход на следующий элемент списка
+    /// Чтобы не зацикливаться
+    while ((head_third->item < head_first->item) || (head_third->item < head_second->item))
+    {   
+        node_t *tmp = head_third->next;
+        if (head_third->item < head_first->item )
+        {    
+            head_third->next = head_first;
+            head_first = head_third;
+        }
+        else if (head_third->item < head_second->item)
+        {
+            head_third->next = head_second;
+            head_second = head_third;
+        }
+        head_third = tmp;
+    }
+
+
+    printf("Первый вывод (Два списка)\n");
+    printf("Third list -> \n");
+    print(head_third);
+    printf("First list -> \n");
+    print(head_first);
+    printf("Second list -> \n");
+    print(head_second);
+    // не работает при одинаковых элементах массива 
+    while (head_first && head_second)
+    {
+        if (head_first->item < head_second->item)
+        {
+            node_t *tmp = head_first->next;
+            head_first->next = head_third;
+            head_third = head_first;
+            head_first = tmp;
+        }
+        else if (head_second->item < head_first->item)
+        {
+            node_t *tmp = head_second->next;
+            head_second->next = head_third;
+            head_third = head_second;
+            head_second = tmp;
+        }
+    }
+    while (head_second)
+    {
+        node_t *tmp = head_second->next;
+        head_second->next = head_third;
+        head_third = head_second;
+        head_second = tmp;
+    }
+    while (head_first)
+    {
+        node_t *tmp = head_first->next;
+        head_first->next = head_third;
+        head_third = head_first;
+        head_first = tmp;
+    }
+
+    printf("Второй вывод (после возврата к одному списку)\n");
+    printf("Third list -> \n");
+    print(head_third);
+    printf("First list -> \n");
+    print(head_first);
+    printf("Second list -> \n");
+    print(head_second);
+    
+    tmp = head_third->next;
+    head_third->next = NULL;
+    head_first = head_third;
+    head_third = tmp;
+    
+    while (head_first->item > head_third->item)
+    {
+        node_t *tmp = head_third->next;
+        head_third->next = head_first;
+        head_first = head_third;
+        head_third = tmp;
+    }
+    
+    tmp = head_third->next;
+    head_third->next = NULL;
+    head_second = head_third;
+    head_third = tmp;
+    while ((head_third->item < head_first->item) || (head_third->item < head_second->item))
+    {   
+        node_t *tmp = head_third->next;
+        if (head_third->item < head_first->item )
+        {    
+            head_third->next = head_first;
+            head_first = head_third;
+        }
+        else if (head_third->item < head_second->item)
+        {
+            head_third->next = head_second;
+            head_second = head_third;
+        }
+        head_third = tmp;
+    }
+    
+    
+    printf("Третий вывод (после разделения на два списка)\n");
+    printf("Third list -> \n");
+    print(head_third);
+    printf("First list -> \n");
+    print(head_first);
+    printf("Second list -> \n");
+    print(head_second);
+    
+
+    while (head_first && head_second)
+    {
+        if (head_first->item < head_second->item)
+        {
+            node_t *tmp = head_first->next;
+            head_first->next = head_third;
+            head_third = head_first;
+            head_first = tmp;
+        }
+        else if (head_second->item < head_first->item)
+        {
+            node_t *tmp = head_second->next;
+            head_second->next = head_third;
+            head_third = head_second;
+            head_second = tmp;
+        }
+    }
+    while (head_second)
+    {
+        node_t *tmp = head_second->next;
+        head_second->next = head_third;
+        head_third = head_second;
+        head_second = tmp;
+    }
+    while (head_first)
+    {
+        node_t *tmp = head_first->next;
+        head_first->next = head_third;
+        head_third = head_first;
+        head_first = tmp;
+    }
+    
+    printf("Третий вывод (после возврата к одному списка)\n");
+    printf("Third list -> \n");
+    print(head_third);
+    printf("First list -> \n");
+    print(head_first);
+    printf("Second list -> \n");
+    print(head_second);
+    
+    tmp = head_third->next;
+    head_third->next = NULL;
+    head_first = head_third;
+    head_third = tmp;
+    
+    while (head_first->item > head_third->item)
+    {
+        node_t *tmp = head_third->next;
+        head_third->next = head_first;
+        head_first = head_third;
+        head_third = tmp;
+    }
+    
+    tmp = head_third->next;
+    head_third->next = NULL;
+    head_second = head_third;
+    head_third = tmp;
+    while ((head_third->item < head_first->item) || (head_third->item < head_second->item))
+    {   
+        node_t *tmp = head_third->next;
+        if (head_third->item < head_first->item )
+        {    
+            head_third->next = head_first;
+            head_first = head_third;
+        }
+        else if (head_third->item < head_second->item)
+        {
+            head_third->next = head_second;
+            head_second = head_third;
+        }
+        head_third = tmp;
+    }
+    printf("Четвертый вывод (после разделения на два списка)\n");
+    printf("Third list -> \n");
+    print(head_third);
+    printf("First list -> \n");
+    print(head_first);
+    printf("Second list -> \n");
+    print(head_second);
+    
+    while (head_first && head_second)
+    {
+        if (head_first->item < head_second->item)
+        {
+            node_t *tmp = head_first->next;
+            head_first->next = head_third;
+            head_third = head_first;
+            head_first = tmp;
+        }
+        else if (head_second->item < head_first->item)
+        {
+            node_t *tmp = head_second->next;
+            head_second->next = head_third;
+            head_third = head_second;
+            head_second = tmp;
+        }
+    }
+    while (head_second)
+    {
+        node_t *tmp = head_second->next;
+        head_second->next = head_third;
+        head_third = head_second;
+        head_second = tmp;
+    }
+    while (head_first)
+    {
+        node_t *tmp = head_first->next;
+        head_first->next = head_third;
+        head_third = head_first;
+        head_first = tmp;
+    }
+    
+    printf("Четвертый вывод (после возврата к одному списка)\n");
+    printf("Third list -> \n");
+    print(head_third);
+    printf("First list -> \n");
+    print(head_first);
+    printf("Second list -> \n");
+    print(head_second);
+    
+    tmp = head_third->next;
+    head_third->next = NULL;
+    head_first = head_third;
+    head_third = tmp;
+    
+    while (head_first->item > head_third->item)
+    {
+        node_t *tmp = head_third->next;
+        head_third->next = head_first;
+        head_first = head_third;
+        head_third = tmp;
+    }
+    
+    tmp = head_third->next;
+    head_third->next = NULL;
+    head_second = head_third;
+    head_third = tmp;
+    // Проверка на опустошение третьего списка
+    while (head_third)
+    {   
+        node_t *tmp = head_third->next;
+        if (head_third->item < head_first->item )
+        {    
+            head_third->next = head_first;
+            head_first = head_third;
+        }
+        else if (head_third->item < head_second->item)
+        {
+            head_third->next = head_second;
+            head_second = head_third;
+        }
+        head_third = tmp;
+    }
+    printf("Пятый вывод (после разделения на два списка)\n");
+    printf("Third list -> \n");
+    print(head_third);
+    printf("First list -> \n");
+    print(head_first);
+    printf("Second list -> \n");
+    print(head_second);
+    
+    // clear(head_third);
+    // clear(head_second);
+    // clear(head_first);
+    
+    while (head_first && head_second)
+    {
+        if (head_first->item < head_second->item)
+        {
+            node_t *tmp = head_first->next;
+            head_first->next = head_third;
+            head_third = head_first;
+            head_first = tmp;
+        }
+        else if (head_second->item < head_first->item)
+        {
+            node_t *tmp = head_second->next;
+            head_second->next = head_third;
+            head_third = head_second;
+            head_second = tmp;
+        }
+    }
+    while (head_second)
+    {
+        node_t *tmp = head_second->next;
+        head_second->next = head_third;
+        head_third = head_second;
+        head_second = tmp;
+    }
+    while (head_first)
+    {
+        node_t *tmp = head_first->next;
+        head_first->next = head_third;
+        head_third = head_first;
+        head_first = tmp;
+    }
+    printf("Пятый вывод (после разделения на два списка)\n");
+    printf("Third list -> \n");
+    print(head_third);
+    printf("First list -> \n");
+    print(head_first);
+    printf("Second list -> \n");
+    print(head_second);
+
+
+(main.h)
+#pragma once
+void NewFunction(node_t * head_first);

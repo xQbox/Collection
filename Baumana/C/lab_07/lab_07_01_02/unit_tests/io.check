@@ -1,0 +1,146 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define ARR_SIZE 10
+#include "libmy.h"
+
+# test check_file_1_pos 
+/// Positive test 1 (low high)
+
+char *filename = "INFILE0.txt";
+size_t size = 0;
+int rc = ERR_OK;
+rc = file_check(filename, &size);
+if (size != 10)
+    rc = ERR_DATA_FILE;
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc, rc_fin);
+
+# test check_file_2_pos 
+/// Positive test 2 (normal order)
+
+char *filename = "INFILE1.txt";
+size_t size = 0;
+int rc = ERR_OK;
+rc = file_check(filename, &size);
+if (size != 10)
+    rc = ERR_DATA_FILE;
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc, rc_fin);
+
+
+# test check_file_3_pos 
+/// Positive test 3 (only one digit)
+
+char *filename = "INFILE2.txt";
+size_t size = 0;
+int rc = ERR_OK;
+rc = file_check(filename, &size);
+if (size != 1)
+    rc = ERR_DATA_FILE;
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc, rc_fin);
+
+
+# test check_file_4_pos 
+/// Positive test 4 (extreme digit)
+
+char *filename = "INFILE3.txt";
+size_t size = 0;
+int rc = ERR_OK;
+rc = file_check(filename, &size);
+if (size != 10)
+    rc = ERR_DATA_FILE;
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc, rc_fin);
+
+///------------------------------------------------
+
+# test check_file_1_neg 
+/// Negative test 1 (file not exist)
+
+char *filename = "INFILE0_NEG.txt";
+size_t size = 0;
+int rc = ERR_OK;
+rc = file_check(filename, &size);
+int rc_fin = ERR_FILE_OPEN;
+ck_assert_int_eq(rc, rc_fin);
+
+# test check_file_2_neg 
+/// Negative test 2 (symbols in file)
+
+char *filename = "INFILE1_NEG.txt";
+size_t size = 0;
+int rc = ERR_OK;
+rc = file_check(filename, &size);
+if (size != 10)
+    rc = ERR_DATA_FILE;
+int rc_fin = ERR_DATA_FILE;
+ck_assert_int_eq(rc, rc_fin);
+
+
+# test check_file_3_neg 
+/// Negative test 3 (empty file)
+size_t size = 0;
+char *filename = "INFILE2_NEG.txt";
+int rc = ERR_OK;
+rc = file_check(filename, &size);
+int rc_fin = ERR_EMPTY_FILE;
+ck_assert_int_eq(rc, rc_fin);
+
+
+# test check_file_4_neg 
+/// Negative test 4 (symbols between digits)
+
+char *filename = "INFILE3_NEG.txt";
+size_t size = 0;
+int rc = ERR_OK;
+rc = file_check(filename, &size);
+int rc_fin = ERR_EMPTY_FILE;
+ck_assert_int_eq(rc, rc_fin);
+
+///------------------------------------------------
+
+# test arr_create_1_pos 
+/// Positive test 1 (order with negative numbers)
+
+char *filename = "ARR_CREATE.txt";
+int A[ARR_SIZE];
+int B[ARR_SIZE] = {0, 9 , 8, 7, 6, 5, 4, -3, 2, 1};
+int rc;
+rc = arr_create(filename, A);
+
+for(size_t i = 0 ; i < ARR_SIZE; i++)
+{
+    if (A[i] != B[i])
+        rc = ERR_FILE_IO;
+}
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc, rc_fin);
+
+# test arr_create_1_neg 
+/// Negative test 1 (symbols in file)
+
+char *filename = "ARR_CREATE_NEG.txt";
+int A[ARR_SIZE];
+int B[ARR_SIZE] = {0, 9 , 0 , 9, 0 , 0 , 0, 9 ,9 , 10};
+int rc;
+rc = arr_create(filename, A);
+
+for(size_t i = 0 ; i < ARR_SIZE; i++)
+{
+    if (A[i] != B[i])
+        rc = ERR_FILE_IO;
+}
+int rc_fin = ERR_FILE_IO;
+ck_assert_int_eq(rc, rc_fin);
+
+# test arr_create_2_neg 
+/// Negative test 2 (file not exist)
+
+char *filename = "1";
+int rc = ERR_OK;
+int A[ARR_SIZE];
+rc = arr_create(filename, A);
+int rc_fin = ERR_FILE_OPEN;
+ck_assert_int_eq(rc, rc_fin);
+

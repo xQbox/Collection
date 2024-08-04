@@ -1,0 +1,63 @@
+
+            //     for (size_t i = 0; i < size; i++)
+            //     {
+            //         for (size_t k = 0; k < size - 1 - i; k++)
+            //         {
+            //             if (tmp_list[k]->year > tmp_list[k+1]->year)
+            //             {
+            //                 node_t *tmp_new = tmp_list[k+1];
+            //                 tmp_list[k+1] = tmp_list[k];
+            //                 tmp_list[k] = tmp_new;
+            //             } 
+            //         }
+            //     } 
+            //     node_t **tmp_list2 = (node_t **)malloc(sizeof(node_t *) * size);
+            //     if (tmp_list2)
+            //     {
+
+            //         for (size_t i = 0; i < size; ++i)
+            //         {
+            //             tmp_list2[i] = NULL;
+            //         }
+            //         node_t *new_head_n = tmp;
+            //         for (size_t i = 0; i < size ; ++i)
+            //         {
+            //             tmp_list2[i] = new_head_n;
+            //             new_head_n = new_head_n->next;
+            //         }
+            //         for (size_t i = 0; i < size; i++)
+            //         {
+            //             for (size_t k = 0; k < size - 1 - i; k++)
+            //             {
+            //                 if ((strcmp(tmp_list2[k]->surname,tmp_list2[k+1]->surname)) > 0)
+            //                 {
+            //                     node_t *tmp_new_m = tmp_list2[k+1];
+            //                     tmp_list2[k+1] = tmp_list2[k];
+            //                     tmp_list2[k] = tmp_new_m;
+            //                 } 
+            //             }
+            //         }    
+            //         size_t k = 0;
+            //         int  year = tmp_list[k]->year;
+            //         while (k < size - 1)
+            //         {
+            //             if (year != tmp_list[k+1]->year)
+            //             {    
+            //                 for (size_t i = 0; i < size; i++)
+            //                 {
+            //                     if (tmp_list[k]->year == tmp_list2[i]->year)
+            //                         printf("%s, %d, %s\n", tmp_list2[i]->surname, tmp_list2[i]->year, tmp_list2[i]->group);
+            //                 }
+            //                 year = tmp_list[k+1]->year;
+            //             }
+            //             k++;
+            //         }
+
+            //         for (size_t i = 0; i < size; i++)
+            //         {
+            //             if (tmp_list[size - 1]->year == tmp_list2[i]->year)
+            //                 printf("%s, %d, %s\n", tmp_list2[i]->surname, tmp_list2[i]->year, tmp_list2[i]->group);
+            //         }
+
+            // free(tmp_list2);
+                // }

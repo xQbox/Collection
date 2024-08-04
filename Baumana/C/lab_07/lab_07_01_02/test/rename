@@ -1,0 +1,9 @@
+#!/bin/bash
+for i in  $(find . -type f);
+    do 
+        echo ${i}
+        if [ ${i} != "rename" ]; 
+            then 
+                mv ${i} ${i}.txt;
+            fi;
+    done;

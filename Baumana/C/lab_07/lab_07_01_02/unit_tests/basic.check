@@ -1,0 +1,344 @@
+#include "libmy.h"
+#include <string.h>
+#define ARR_SIZE 10
+
+# test key_1_pos 
+/// Позитивный тест 1 для функции key (все цифры положительные)
+int IDOL [ARR_SIZE] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int *ptrs = malloc(ARR_SIZE * sizeof(int)); 
+int *ptrend = ptrs + ARR_SIZE;
+int rc = ERR_OK;
+rc = key(IDOL, IDOL + ARR_SIZE, &ptrs, &ptrend);
+for (size_t i = 0; i < ARR_SIZE; i++)
+{
+    if ((*(IDOL + i)) != (*(ptrs + i)))
+        rc = ERR_SIZE;
+}
+int rc_fin = ERR_OK;
+free(ptrs);
+ck_assert_int_eq(rc, rc_fin);
+
+# test key_2_pos 
+/// Позитивный тест 2 для функции key (8-ая цифра отрицательная)
+int IDOL [ARR_SIZE] = {1, 2, 3, 4, 5, 6, 7, -8, 9, 10};
+size_t size = ARR_SIZE - 3;
+int *ptrs = malloc((size) * sizeof(int)); 
+int *ptrend = ptrs + size;
+int rc = ERR_OK;
+rc = key(IDOL, IDOL + size, &ptrs, &ptrend);
+for (size_t i = 0; i < size; i++)
+{
+    if ((*(IDOL + i)) != (*(ptrs + i)))
+        rc = ERR_SIZE;
+}
+int rc_fin = ERR_OK;
+free(ptrs);
+ck_assert_int_eq(rc, rc_fin);
+
+# test key_3_pos 
+/// Позитивный тест 3 для функции key (4-ая цифра отрицательная)
+int IDOL [ARR_SIZE] = {1, 2, 3, -4, 5, 6, 7, 8, 9, 10};
+size_t size = ARR_SIZE - 7;
+int *ptrs = malloc((size) * sizeof(int)); 
+int *ptrend = ptrs + size;
+int rc = ERR_OK;
+rc = key(IDOL, IDOL + size, &ptrs, &ptrend);
+for (size_t i = 0; i < size; i++)
+{
+    if ((*(IDOL + i)) != (*(ptrs + i)))
+        rc = ERR_SIZE;
+}
+int rc_fin = ERR_OK;
+free(ptrs);
+ck_assert_int_eq(rc, rc_fin);
+
+
+///----------------------------------------------------------
+
+
+# test key_1_neg 
+/// Отрицательный тест 1 для функции key (0 размер массива)
+int IDOL [ARR_SIZE] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+size_t size = ARR_SIZE - 7;
+int *ptrs = malloc((size) * sizeof(int)); 
+int *ptrend = ptrs + size;
+int rc = ERR_OK;
+rc = key(IDOL, IDOL + size, &ptrs, &ptrend);
+int rc_fin = ERR_ARR_SIZE;
+free(ptrs);
+ck_assert_int_eq(rc, rc_fin);
+
+
+
+# test key_2_neg 
+/// Отрицательный тест 2 для функции key (1-ый указатель пустой)
+int IDOL [ARR_SIZE] = {1, 2, 3, -4, 5, 6, 7, 8, 9, 10};
+size_t size = ARR_SIZE - 7;
+int *ptrs = malloc((size) * sizeof(int)); 
+int *ptrend = ptrs + size;
+int rc = ERR_OK;
+rc = key(NULL, IDOL + size, &ptrs, &ptrend);
+int rc_fin = ERR_SIZE;
+free(ptrs);
+ck_assert_int_eq(rc, rc_fin);
+
+# test key_3_neg 
+/// Отрицательный тест 3 для функции key (2- ой указатель пустой)
+int IDOL [ARR_SIZE] = {1, 2, 3, -4, 5, 6, 7, 8, 9, 10};
+size_t size = ARR_SIZE - 7;
+int *ptrs = malloc(size * sizeof(int)); 
+int *ptrend = ptrs + size;
+int rc = ERR_OK;
+rc = key(IDOL, NULL, &ptrs, &ptrend);
+int rc_fin = ERR_SIZE;
+free(ptrs);
+ck_assert_int_eq(rc, rc_fin);
+
+///----------------------------------------------------------
+
+# test buble_sort_main_1 
+/// Тест для функции сортировки (1 число)
+size_t size = 1;
+int IDOL[ARR_SIZE-9] = {1};
+int *ptrs = malloc(size * sizeof(int));
+int *ps = ptrs;
+int rc = ERR_OK;
+for(int i = 0; ps < ptrs + size; ps++, i++)
+    *ps = (i + 1);
+mysort(ptrs, size, sizeof(int), comp);
+for (size_t i = 0; i < size; i++)
+{
+    if (IDOL[i] != *(ptrs + i))
+        rc = ERR_SIZE;
+}
+free(ptrs);
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc , rc_fin);
+
+# test buble_sort_main_2 
+/// Тест для функции сортировки (2 элементов ->)
+const size_t size = 2;
+int IDOL[ARR_SIZE - 8] = {1, 2};
+int *ptrs = malloc(size * sizeof(int));
+int *ps = ptrs;
+int rc = ERR_OK;
+for(int i = 0; ps < ptrs + size; ps++, i++)
+    *ps = (i + 1);
+mysort(ptrs, size, sizeof(int), comp);
+for (size_t i = 0; i < size; i++)
+{
+    if (IDOL[i] != *(ptrs + i))
+        rc = ERR_SIZE;
+}
+free(ptrs);
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc , rc_fin);
+
+
+# test buble_sort_main_3
+/// Тест для функции сортировки (2 элементов <-)
+const size_t size = 2;
+int IDOL[ARR_SIZE - 8] = {1, 2};
+int *ptrs = malloc(size * sizeof(int));
+int *ps = ptrs;
+int rc = ERR_OK;
+for(int i = size; ps < ptrs + size; ps++, i--)
+    *ps = i;
+mysort(ptrs, size, sizeof(int), comp);
+for (size_t i = 0; i < size; i++)
+{
+    if (IDOL[i] != *(ptrs + i))
+        rc = ERR_SIZE;
+}
+free(ptrs);
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc , rc_fin);
+
+
+# test buble_sort_main_4
+/// Тест для функции сортировки (10 элементов ->)
+const size_t size = 10;
+int IDOL[ARR_SIZE] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int *ptrs = malloc(size * sizeof(int));
+int *ps = ptrs;
+int rc = ERR_OK;
+for(int i = 0; ps < ptrs + size; ps++, i++)
+    *ps = (i + 1);
+mysort(ptrs, size, sizeof(int), comp);
+for (size_t i = 0; i < size; i++)
+{
+    if (IDOL[i] != *(ptrs + i))
+        rc = ERR_SIZE;
+}
+free(ptrs);
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc , rc_fin);
+
+
+# test buble_sort_main_5
+/// Тест для функции сортировки (10 элементов <-)
+const size_t size = 10;
+int IDOL[ARR_SIZE] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int *ptrs = malloc(size * sizeof(int));
+int *ps = ptrs;
+int rc = ERR_OK;
+for(int i = size; ps < ptrs + size; ps++, i--)
+    *ps = i;
+mysort(ptrs, size, sizeof(int), comp);
+for (size_t i = 0; i < size; i++)
+{
+    if (IDOL[i] != *(ptrs + i))
+        rc = ERR_SIZE;
+}
+free(ptrs);
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc , rc_fin);
+
+
+# test buble_sort_main_6
+/// Тест для функции сортировки (10 элементов случайных с повторения)
+const size_t size = 10;
+int IDOL[ARR_SIZE] = {1, 2, 3, 5, 5, 6, 6, 8, 9, 10};
+int *ptrs = malloc(size * sizeof(int));
+int *ps = ptrs;
+int rc = ERR_OK;
+for(int i = size - 1; ps < ptrs + size; ps++, i--)
+    if ((i+1) == 4)
+        *ps = 5;
+    else if ((i + 1) == 7)
+        *ps = 6;
+    else if ((i + 1) == 3)
+        *ps = 9; 
+    else if ((i + 1) == 9)
+        *ps = 3;
+    else
+        *ps = i + 1;
+mysort(ptrs, size, sizeof(int), comp);
+for (size_t i = 0; i < size; i++)
+{
+    if (IDOL[i] != *(ptrs + i))
+        rc = ERR_SIZE;
+}
+free(ptrs);
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc , rc_fin);
+
+# test buble_sort_main_7
+/// Тест для функции сортировки (10 элементов случайная)
+const size_t size = 10;
+int IDOL[ARR_SIZE] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int *ptrs = malloc(size * sizeof(int));
+int *ps = ptrs;
+int rc = ERR_OK;
+for(int i = size - 1; ps < ptrs + size; ps++, i--)
+    if ((i + 1) == 7)
+        *ps = 5;
+    else if ((i + 1) == 5)
+        *ps = 7;
+    else if ((i + 1) == 3)
+        *ps = 9; 
+    else if ((i + 1) == 9)
+        *ps = 3;
+    else
+        *ps = i + 1;
+mysort(ptrs, size, sizeof(int), comp);
+for (size_t i = 0; i < size; i++)
+{
+    if (IDOL[i] != *(ptrs + i))
+        rc = ERR_SIZE;
+}
+free(ptrs);
+int rc_fin = ERR_OK;
+ck_assert_int_eq(rc , rc_fin);
+
+
+///----------------------------------------------------------
+
+#test comp_1
+/// Тест для функции сравнения двух элементов (сравнение int)
+int A[2] = {10000 , 2200000};
+int rc = ERR_OK;
+if (comp(A, A + 1) < 0)
+    rc = ERR_OK;
+else 
+    rc = 1;
+ck_assert_int_eq(rc, ERR_OK);
+
+
+#test comp_2
+/// Тест для функции сравнения двух элементов (сравнение int)
+char b = 'b';
+char a = 'a';
+int rc = ERR_OK;
+if (comp(&a, &b) < 0)
+    rc = ERR_OK;
+else 
+    rc = 1;
+ck_assert_int_eq(rc, ERR_OK);
+
+
+#test comp_3
+/// Тест для функции сравнения двух элементов (сравнение int)
+int b = 10000;
+int a = 999;
+int rc = ERR_OK;
+if (comp(&a, &b) < 0)
+    rc = ERR_OK;
+else 
+    rc = 1;
+
+ck_assert_int_eq(rc, ERR_OK);
+
+///----------------------------------------------------------
+
+#test swap_1
+/// Тест для функции обмена элементов переменных между собой (int , int)
+int b = 10000;
+int a = 9999;
+int rc = ERR_OK;
+swap(&a, &b, sizeof(int));
+if (a == 10000 && b == 9999)
+    rc = ERR_OK;
+else    
+    rc = ERR_SIZE;
+
+ck_assert_int_eq(rc, ERR_OK);
+
+#test swap_2
+/// Тест для функции обмена элементов переменных между собой (char , char)
+char b = 'b';
+char a = 'a';;
+int rc = ERR_OK;
+swap(&a, &b, sizeof(char));
+if (a == 'b' && b == 'a')
+    rc = ERR_OK;
+else    
+    rc = ERR_SIZE;
+
+ck_assert_int_eq(rc, ERR_OK);
+
+
+#test swap_3
+/// Тест для функции обмена элементов переменных между собой (strcut , struct)
+struct book_t
+{
+    int public_data;
+    char name[29];
+};
+struct book_t book2, book1;
+book1.public_data = 1971;
+strcpy(book1.name, "Айзек Азимов");
+book2.public_data = 2023;
+strcpy(book2.name, "Алексей Пехов");
+int rc = ERR_OK;
+swap(&book1, &book2, sizeof(book1));
+if (((strcmp(book1.name, "Алексей Пехов")) == 0) && (book1.public_data == 2023))
+{
+    if (((strcmp(book2.name, "Айзек Азимов")) == 0) && (book2.public_data == 1971))
+        rc = ERR_OK;
+    else 
+        rc = ERR_SIZE;
+}
+else 
+    rc = ERR_SIZE;
+ck_assert_int_eq(rc, ERR_OK);

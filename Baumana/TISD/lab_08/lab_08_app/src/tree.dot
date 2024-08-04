@@ -1,0 +1,6 @@
+digraph kaifarik {
+node [shape=circle, style=filled, color=black, fontcolor=white];
+A -> B
+A -> M
+B -> M
+}

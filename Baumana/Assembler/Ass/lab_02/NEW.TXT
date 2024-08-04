@@ -1,0 +1,7 @@
+code SEGMENT
+ASSUME CS:code, DS:code, SS:code
+ORG 100h
+START:
+INT 20h
+code ends
+end START

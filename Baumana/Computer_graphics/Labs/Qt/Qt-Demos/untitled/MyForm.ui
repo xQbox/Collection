@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1600</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1600</width>
+    <height>1000</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>1200</width>
+     <height>900</height>
+    </size>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="mainGrid">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetFixedSize</enum>
+      </property>
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="sidebarGrid">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <property name="leftMargin">
+         <number>6</number>
+        </property>
+        <property name="topMargin">
+         <number>6</number>
+        </property>
+        <property name="rightMargin">
+         <number>6</number>
+        </property>
+        <property name="bottomMargin">
+         <number>6</number>
+        </property>
+        <item row="3" column="1" colspan="2">
+         <widget class="QLineEdit" name="lineEdit"/>
+        </item>
+        <item row="17" column="2">
+         <widget class="QPushButton" name="goForward">
+          <property name="text">
+           <string>Вперед</string>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0" colspan="3">
+         <widget class="QProgressBar" name="progressBar">
+          <property name="value">
+           <number>24</number>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="3" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Действия</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="2">
+         <widget class="QPushButton" name="addObject">
+          <property name="text">
+           <string>Добавить объект</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="3">
+         <widget class="Line" name="line_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="3">
+         <widget class="Line" name="line_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0" colspan="3" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Шаг</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="2">
+         <widget class="QPushButton" name="makeBigger">
+          <property name="text">
+           <string>Увеличить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="0" colspan="3">
+         <widget class="Line" name="line_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" colspan="2">
+         <widget class="QPushButton" name="addGrid">
+          <property name="text">
+           <string>Задать сетку</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="maximumSize">
+           <size>
+            <width>16</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Y:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0" colspan="2">
+         <widget class="QPushButton" name="printAlgorithm">
+          <property name="text">
+           <string>Список алгоритмов</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0" colspan="2">
+         <widget class="QPushButton" name="makeSmaller">
+          <property name="text">
+           <string>Уменьшить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Координаты</string>
+          </property>
+         </widget>
+        </item>
+        <item row="18" column="0" colspan="3">
+         <widget class="QListView" name="listView">
+          <property name="maximumSize">
+           <size>
+            <width>512</width>
+            <height>63</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="maximumSize">
+           <size>
+            <width>16</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Х:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" colspan="2">
+         <widget class="QLineEdit" name="lineEdit_2"/>
+        </item>
+        <item row="6" column="0" colspan="3">
+         <widget class="QPushButton" name="addPoint">
+          <property name="text">
+           <string>Задать точку</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="0" colspan="3">
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="0" colspan="2">
+         <widget class="QPushButton" name="goBack">
+          <property name="text">
+           <string>Назад</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="2">
+         <widget class="QPushButton" name="printGraphics">
+          <property name="text">
+           <string>Вывести графики</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="3">
+         <widget class="Line" name="line_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="0" colspan="3">
+         <widget class="QPushButton" name="solveTask">
+          <property name="text">
+           <string>Решить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="3" alignment="Qt::AlignHCenter|Qt::AlignTop">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>ГОООЛ</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3" rowspan="19">
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <widget class="QGraphicsView" name="mainScene">
+        <property name="minimumSize">
+         <size>
+          <width>1200</width>
+          <height>800</height>
+         </size>
+        </property>
+        <property name="cacheMode">
+         <set>QGraphicsView::CacheNone</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+   <zorder></zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1600</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="action"/>
+    <addaction name="action_2"/>
+    <addaction name="action_3"/>
+    <addaction name="separator"/>
+    <addaction name="action_5"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="action_8"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Изменить</string>
+    </property>
+    <addaction name="action_9"/>
+    <addaction name="action_10"/>
+    <addaction name="separator"/>
+    <addaction name="action_12"/>
+    <addaction name="action_13"/>
+    <addaction name="action_14"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>О программе</string>
+    </property>
+    <addaction name="action_15"/>
+    <addaction name="action_16"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action">
+   <property name="text">
+    <string>Создать</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>Открыть</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>Сохранить как...</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>Последние</string>
+   </property>
+  </action>
+  <action name="action_8">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="action_9">
+   <property name="text">
+    <string>Отменить</string>
+   </property>
+  </action>
+  <action name="action_10">
+   <property name="text">
+    <string>Удалить</string>
+   </property>
+  </action>
+  <action name="action_12">
+   <property name="text">
+    <string>Вырезать</string>
+   </property>
+  </action>
+  <action name="action_13">
+   <property name="text">
+    <string>Скопировать</string>
+   </property>
+  </action>
+  <action name="action_14">
+   <property name="text">
+    <string>Вставить</string>
+   </property>
+  </action>
+  <action name="action_15">
+   <property name="text">
+    <string>Об авторе</string>
+   </property>
+  </action>
+  <action name="action_16">
+   <property name="text">
+    <string>о задаче</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>addPoint</tabstop>
+  <tabstop>addGrid</tabstop>
+  <tabstop>printGraphics</tabstop>
+  <tabstop>printAlgorithm</tabstop>
+  <tabstop>addObject</tabstop>
+  <tabstop>makeSmaller</tabstop>
+  <tabstop>makeBigger</tabstop>
+  <tabstop>solveTask</tabstop>
+  <tabstop>goBack</tabstop>
+  <tabstop>goForward</tabstop>
+  <tabstop>listView</tabstop>
+  <tabstop>mainScene</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>addPoint</sender>
+   <signal>clicked()</signal>
+   <receiver>mainScene</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>233</x>
+     <y>411</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>328</x>
+     <y>489</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addGrid</sender>
+   <signal>clicked()</signal>
+   <receiver>mainScene</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>143</x>
+     <y>580</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>528</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addObject</sender>
+   <signal>clicked()</signal>
+   <receiver>mainScene</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>244</x>
+     <y>612</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>306</x>
+     <y>555</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>makeSmaller</sender>
+   <signal>clicked()</signal>
+   <receiver>mainScene</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>108</x>
+     <y>642</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>295</x>
+     <y>660</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>makeBigger</sender>
+   <signal>clicked()</signal>
+   <receiver>mainScene</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>215</x>
+     <y>644</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>312</x>
+     <y>696</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>solveTask</sender>
+   <signal>clicked()</signal>
+   <receiver>mainScene</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>137</x>
+     <y>681</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>304</x>
+     <y>771</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>goBack</sender>
+   <signal>clicked()</signal>
+   <receiver>mainScene</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>128</x>
+     <y>872</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>832</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>goForward</sender>
+   <signal>clicked()</signal>
+   <receiver>mainScene</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>219</x>
+     <y>879</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>862</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -1,0 +1,10 @@
+6 8
+A B 5
+B A 10
+A D 5
+D A 10
+A M 5
+A L 5
+A S 10
+B S 10
+B M 10

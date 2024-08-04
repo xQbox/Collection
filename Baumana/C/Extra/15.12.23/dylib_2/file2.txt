@@ -1,0 +1,22 @@
+int lib_load_funcs(void *hlib, struct lib_funcs_t *func)
+{
+    func->ba_create = dlsym(hlib, "ba_create");
+    if (!func->ba_create)
+    {
+        fprintf(stderr, "cannot load ba_create:%s\n", dlerror());
+        return ERR_IMPORT_FUNC;
+    }
+    func->ba_print = dlsym(hlib, "ba_print");
+    if (!func->ba_print)
+    {
+        fprintf(stderr, "cannot load ba_create:%s\n", dlerror());
+        return ERR_IMPORT_FUNC;
+    }
+    func->ba_sort = dlsym(hlib, "ba_sort");
+    if (!func->ba_sort)
+    {
+        fprintf(stderr, "cannot load ba_create:%s\n", dlerror());
+        return ERR_IMPORT_FUNC;
+    }
+    return ERR_OK;
+}

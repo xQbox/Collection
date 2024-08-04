@@ -1,0 +1,9 @@
+size_t read_line(char *s, size_t n)
+{
+	int ch 
+}
+char *fgets(char *s, int size, FILE *stream)
+- прекращает ввод( любое из):
+- прочиатн исвол \н
+- достигнут окнец файла
+- прочитано size-1 симвоо
